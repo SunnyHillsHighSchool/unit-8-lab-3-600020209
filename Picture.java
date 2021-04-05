@@ -367,7 +367,51 @@ public class Picture
   }
 
    ////////////////////// methods ///////////////////////////////////////
+  public void sepiaTone(){
+    //Create 2d array of pixels
+    Pixel[][] pixels = this.getPixels2D();
+    //Create current pixel variable
+    Pixel p = null;
+    //Create RGB value variables
+    int r = 0;
+    int g = 0;
+    int b = 0;
+    //Create new RGB variables
+    int newR = 0;
+    int newG = 0;
+    int newB = 0;
+    //Loop through all pixels in array
+    for(int i = 0; i < pixels.length; i++){
+      for(int j = 0; j < pixels[i].length; j++){
+        //Get RGB values of pixel
+        r = pixels[i][j].getRed();
+        g = pixels[i][j].getGreen();
+        b = pixels[i][j].getBlue();
+        //Get new RGB values: the new red is 0.393*R + 0.769*G + 0.189*B, new green is 0.349*R + 0.686*G + 0.168*B, and new blue is 0.272*R + 0.534*G + 0.131*B
+        newR = (int)(0.393*r + 0.769*g + 0.189*b);
+        newG = (int)(0.349*r + 0.686*g + 0.168*b);
+        newB = (int)(0.272*r + 0.534*g + 0.131*b);
+        //adjust values if out of bounds (if greater than 255, set to 255)
+        if(newR > 255){
+          newR = 255;
+        }
+        if(newG > 255){
+          newG = 255;
+        }
+        if(newB > 255){
+          newB = 255;
+        }
+        //Set new values to the RGB values of the pixel
+        pixels[i][j].setRed(newR);
+        pixels[i][j].setGreen(newG);
+        pixels[i][j].setBlue(newB);
+      }
+    }
+    
+    
+    
 
+  }
    
 
 
